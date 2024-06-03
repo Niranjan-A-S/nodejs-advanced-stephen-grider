@@ -1,7 +1,5 @@
 const cluster = require('node:cluster');
-const express = require('express');
 const os = require('node:os');
-app = express();
 
 //Checking if the cluster is in master mode
 if (cluster.isMaster) {
@@ -11,6 +9,8 @@ if (cluster.isMaster) {
         cluster.fork();
     }
 } else {
+    const express = require('express');
+    app = express();
     function doWork(duration) {
         const start = Date.now();
         while (Date.now() - start < duration) { }
